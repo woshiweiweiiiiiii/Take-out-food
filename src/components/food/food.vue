@@ -67,6 +67,7 @@
 	const NEGATIVE = 1;
 	const ALL = 2;
 	
+
 	export default {
 		props: {
 			food: {
@@ -129,6 +130,31 @@
 				}else{
 					this.foodScroll.refresh()
 				}
+			})
+		},
+		mounted() {
+			let isMove = false
+			let startX = 0
+			let distanceX = 0
+			let dom = this.$refs.food
+			let that = this
+			dom.addEventListener('touchstart',function (e) {
+			    startX = e.touches[0].clientX;
+			})
+			dom.addEventListener('touchmove',function (e) {
+			    isMove = true;
+			    let moveX = e.touches[0].clientX;
+			    distanceX = moveX - startX;
+			})
+			dom.addEventListener('touchend',function (e) {
+			    /*滑动结束*/
+			    if(isMove && Math.abs(distanceX) > 100){
+			        that.close()
+			    }
+			    /*重置参数*/
+			    isMove = false;
+			    startX = 0;
+			    distanceX = 0;
 			})
 		},
 		components: {
