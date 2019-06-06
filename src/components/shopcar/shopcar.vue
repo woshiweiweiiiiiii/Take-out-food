@@ -44,7 +44,7 @@
 
 <script>
 	import BScroll from 'better-scroll'
-
+	import { Toast } from 'mint-ui'
 	import carcontrol from '../carcontrol/carcontrol'
 
 	export default {
@@ -81,7 +81,12 @@
 				if(this.totalPrice < this.minPrice) {
 					return
 				}
-				window.alert(`支付${this.totalPrice}元`)
+				// window.alert(`支付${this.totalPrice}元`)
+				Toast({
+					message: `您已支付${this.totalPrice}元`,
+					position: 'middle',
+					duration: 2000
+				});
 			}
 		},
 		watch: {
