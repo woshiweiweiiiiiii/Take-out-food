@@ -21,7 +21,6 @@
 					<carcontrol :food="food"></carcontrol>
 				</div>
 				<!-- <div class="buy" v-show="!food.count || food.count === 0" @click="addFirst">加入购物车</div> -->
-				<!-- <div class="buy" v-show="false" @click="addFirst">加入购物车</div> -->
 			</div>
 			<split v-show="food.info"></split>
 			<div class="info" v-show="food.info">
