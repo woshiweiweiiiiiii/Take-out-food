@@ -5,29 +5,30 @@ const fs = require('fs')
 const app = new koa()
 const router = new Router()
 
-var store
-var goods
-var ratings
 
-// const appData = require('./data.json')
+// var store
+// var goods
+// var ratings
 
-var p = new Promise((resolve, reject) => {
-		fs.readFile('./data.json','utf-8', (err, data) => {
-			resolve(data)
-		})
-	})
+let appData = require('./data.json')
 
-
-p.then((data) => {
-	var appData = JSON.parse(data)
-	store = appData.store;
-	goods = appData.goods;
-	ratings = appData.ratings;
-})
+// var p = new Promise((resolve, reject) => {
+// 		fs.readFile('./data.json','utf-8', (err, data) => {
+// 			resolve(data)
+// 		})
+// 	})
 // 
-// const store = appData.store;
-// const goods = appData.goods;
-// const ratings = appData.ratings;
+// 
+// p.then((data) => {
+// 	var appData = JSON.parse(data)
+// 	store = appData.store;
+// 	goods = appData.goods;
+// 	ratings = appData.ratings;
+// })
+// 
+let store = appData.store;
+let goods = appData.goods;
+let ratings = appData.ratings;
 
 router.get('/api/store', async ctx => {
 	ctx.body = {
@@ -48,12 +49,15 @@ router.get('/api/ratings', async ctx => {
 	}
 })
 
+
+
+
 app.use(router.routes())
 app.use(router.allowedMethods())
 
 
 const port = 8081
 
-app.listen(port, ()=>{
+app.listen(port, () => {
 	console.log(`server is running ${port} ...`);
 })

@@ -40,6 +40,7 @@
 					</li>
 				</ul>
 			</div>
+			<!-- <shopcar v-show="carShow" :selectFoods="selectFoods" :deliveryPrice="store.deliveryPrice" :minPrice="store.minPrice" @hideCar="hideCar"></shopcar> -->
 			<shopcar v-show="carShow" :selectFoods="selectFoods" :deliveryPrice="store.deliveryPrice" :minPrice="store.minPrice" @hideCar="hideCar"></shopcar>
 		</div>
 		<transition name="food">
@@ -81,14 +82,19 @@
 				return 0
 			},
 			selectFoods() {
-				let foods = []
-				this.goods.forEach((good) => {
-					good.foods.forEach((food) => {
-						if(food.count) {
-							foods.push(food)
-							this.carShow = true//显示购物车
-						}
-					})
+				let foods = this.$store.state.shopCar
+				// this.goods.forEach((good) => {
+				// 	good.foods.forEach((food) => {
+				// 		if(food.count) {
+				// 			foods.push(food)
+				// 			this.carShow = true//显示购物车
+				// 		}
+				// 	})
+				// })
+				foods.forEach(item => {
+					if(item.count) {
+						this.carShow = true
+					}
 				})
 				return foods
 			}
@@ -146,7 +152,7 @@
 						this.calculateHeight()
 				})	
 				}
-			});
+			})
 		},
 		components: {
 			shopcar,

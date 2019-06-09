@@ -5,7 +5,7 @@
 > 所有数据来源于项目根目录下的data.json，用nodejs写了简单的数据接口。
 ## npm install 安装项目依赖
 ## npm run server 运行后端数据接口
-## npm run dev 打包运行项目
+## npm run dev 运行项目
 
 # 项目截图
 <img src="static/images/001.png" />

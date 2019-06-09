@@ -20,7 +20,7 @@
 				<div class="carcontrol-wrapper">
 					<carcontrol :food="food"></carcontrol>
 				</div>
-				<!-- <div class="buy" v-show="!food.count || food.count === 0" @click="addFirst">加入购物车</div> -->
+				<div class="buy" v-show="foodCount === 0" @click="addFirst">加入购物车</div>
 			</div>
 			<split v-show="food.info"></split>
 			<div class="info" v-show="food.info">
@@ -84,6 +84,18 @@
 				}
 			}
 		},
+		computed: {
+			foodCount() {
+				let count = 0
+				let foodinfo = {name: this.food.name, price: this.food.price, count: 1}
+				this.$store.state.shopCar.some(item => {
+					if(item.name == foodinfo.name) {
+						count = item.count
+					}
+				})
+				return count
+			}
+		},
 		filters: {
 			formatDate(time) {
 				let date =new Date(time)
@@ -107,7 +119,8 @@
 				this.$emit('closeFood')
 			},
 			addFirst() {
-				Vue.set(this.food, 'count', 1)
+				let foodinfo = {name: this.food.name, price: this.food.price, count: 1}
+				this.$store.commit('addFood', foodinfo)
 			},
 			needShow(type, text) {
 				if(this.onlyContent && !text) {

@@ -20,6 +20,7 @@ import axios from 'axios'
 
 const ERR_OK = 0;
 
+
 export default {
 	data() {
 		return {
@@ -36,7 +37,8 @@ export default {
 			if (res.data.errno === ERR_OK) {
 				this.store = res.data.data
 			}
-		});
+		})
+		
 	},
 	
 	components: {
