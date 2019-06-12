@@ -23,15 +23,7 @@
 		},
 		methods: {
 			addCar() {
-				// let foodc = this.food
-				// if(!foodc.count || foodc.count === 0) {
-				// 	// Vue.set(this.food, 'count', 1)
-				// 	foodc.count = 1
-				// 	
-				// }else{
-				// 	foodc.count ++
-				// }
-				// this.$store.state.shopCar.push(foodc)
+				
 				let foodinfo = {name: this.food.name, price: this.food.price, count: 1}
 				this.$store.commit('addFood', foodinfo)
 			},
